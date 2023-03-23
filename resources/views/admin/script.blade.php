@@ -17,11 +17,11 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
 
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+    // $(document).ready(function() {
+    //     // Javascript method's body can be found in assets/js/demos.js
+    //     demo.initDashboardPageCharts();
 
-        demo.showNotification();
+    //     demo.showNotification();
 
-    });
+    // });
 </script>
