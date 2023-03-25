@@ -42,7 +42,6 @@ class categoryController extends Controller
           $description=$request->description;
           $status=$request->status == TRUE ? '1':'0';
           $popular=$request->popular  == TRUE ?'1':'0';
-
           if(request()->hasFile('image'))
           {
               $extension =request('image')->extension();
@@ -60,7 +59,7 @@ class categoryController extends Controller
               'image' =>  $image,
 
           ]);
-          return redirect()->route('showcategory')->with('status',"Category added succesfully!!");
+      return redirect()->route('showcategory')->with('status',"Category added succesfully!!");
 
     }
 

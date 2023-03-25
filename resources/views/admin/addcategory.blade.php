@@ -47,16 +47,17 @@
 <div class="row">
         <div class="col-6 mb-3">
                 <label for="status">Status</label>
-                <input type="checkbox" name="status">
+                <input type="checkbox" name="status" value="on" {{ old('status') == 'on' ? 'checked' : '' }}>
+
         </div>
 
         <div class="col-6">
-                <label for="popular">Popular</label>
-                <input type="checkbox" name="popular">
-        </div>
-    </div>
+                <label for="popular">popular</label>
+                <input type="checkbox" name="popular" value="on" {{ old('popular') == 'on' ? 'checked' : '' }}>
 
-    <div class="form-group ">
+        </div>
+
+      <div class="form-group ">
           <label>File upload</label>
             <input type="file" class="form-control" name="image" value={{old('image')}}>
         @error('image')

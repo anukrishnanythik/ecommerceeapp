@@ -13,7 +13,7 @@ Tip 2: you can also add an image using data-image tag
         <ul class="nav">
             <li class="nav-item menu-items">
 
-                <a href="dashboard.html" class="nav-link">
+                <a href="{{route('redirect')}}" class="nav-link">
                     <i class="pe-7s-graph"></i>
                     <p>Dashboard</p>
                 </a>
@@ -48,7 +48,7 @@ Tip 2: you can also add an image using data-image tag
 
 
 
-       
+
 
 
         </ul>

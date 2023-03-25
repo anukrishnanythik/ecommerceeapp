@@ -14,19 +14,24 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                        <span class="no-icon">Log out</span>
-                    </a>
+
+                    <x-dropdown-link class="nav-link" :href="route('profile.edit')">
+                        {{ Auth::user()->name }}
+                    </x-dropdown-link>
+
+                </li>
+                <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-dropdown-link :href="route('logout')"
+                        <x-dropdown-link  class="nav-link" :href="route('logout')"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                           <i class="fa fs-5 fa-sign-out"></i>{{ __('Logout') }}
                         </x-dropdown-link>
                     </form>
                 </li>
+
             </ul>
 
         </div>

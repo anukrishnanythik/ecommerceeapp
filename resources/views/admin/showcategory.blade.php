@@ -29,9 +29,9 @@
                 </thead>
                 <tbody>
 
-                    {{-- @foreach($category as $row) --}}
-{{--       --}}
-                    {{-- @endforeach --}}
+                    @foreach($category as $row)
+
+                 @endforeach
                 </tbody>
             </table>
         </div>

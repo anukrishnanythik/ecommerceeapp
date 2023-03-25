@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sellingprice');
             $table->string('image');
             $table->string('quantity');
+            $table->timestamps();
         });
     }
 

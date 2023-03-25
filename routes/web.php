@@ -20,7 +20,7 @@ Route::get('/redirect','homeController@redirect')->name('redirect');
 
 
 
-Route::get('/add_category','categoryController@create')->name('addcategory');
+Route::get('/add_category','categoryController@create')->middleware(['auth', 'verified'])->name('addcategory');
 Route::post('/upload_category','categoryController@store')->name('uploadcategory');
 Route::get('/show_category','categoryController@show')->name('showcategory');
 Route::get('/edit_category/{id}','categoryController@edit')->name('editcategory');
