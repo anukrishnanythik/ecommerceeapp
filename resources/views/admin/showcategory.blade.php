@@ -20,17 +20,27 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th  class="fs-6 text-center">slno </th>
-                        <th  class="fs-6 text-center ">Name</th>
-                        <th  class="fs-6 text-center">Description</th>
+                        <th  class="fs-4 text-center">slno </th>
+                        <th  class="fs-4 text-center">Name</th>
+                        <th  class="fs-4 text-center">Description</th>
                         <th  class="fs-6 text-center">Image</th>
-                        <th colspan="2"  class="text-center" >Action</th>
+                        <th colspan="2" class="fs-6 text-center">Action</th>
                      </tr>
                 </thead>
                 <tbody>
 
                     @foreach($category as $row)
-
+                    <tr class="fs-6 text-center ">
+                        <td  class="fs-6 ">{{$loop->iteration}}</td>
+                        <td  class="fs-6">{{$row->title}}</td>
+                        <td  class="fs-6">{{$row->description}}</td>
+                        <td  class="fs-6"><img  height='100' width='100' src="{{asset('storage/image/'.$row->image)}}"  alt="Category image"></td>
+                        <td><button type="button" class="btn btn-warning"><a href="{{route('editcategory',encrypt($row->category_id))}}"
+                            class="text-decoration-none  fs-6" >Edit</a></button>  </td>
+                            <td>   <button type="button" class="btn btn-danger"><a href="{{route('deletecategory',encrypt($row->category_id))}}"
+                                class="text-decoration-none  fs-6" >Delete</a></button>
+                          </td>
+                      </tr>
                  @endforeach
                 </tbody>
             </table>

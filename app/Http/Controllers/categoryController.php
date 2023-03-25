@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use Illuminate\Support\Facades\File;
 
 class categoryController extends Controller
 {
@@ -66,7 +66,7 @@ class categoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
         $category= Category::all();
         return view('admin.showcategory',compact('category'));
@@ -101,7 +101,7 @@ class categoryController extends Controller
 
         if(request()->hasFile('image'))
         {
-            unlink('storage/image/'.$category->image);
+            File::delete('storage/image/'.$category->image);
             $extension =request('image')->extension();
             $file ='user_pic'. time().'.'.$extension;
             request('image') ->storeAs('image',$file);
@@ -126,15 +126,14 @@ class categoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $category= Category::findOrFail(decrypt($id));
-        if(file_exists('storage/image/'.$category->image))
+        if(File::exists('storage/image/'.$category->image))
         {
-            unlink('storage/image/'.$category->image);
+            File::delete('storage/image/'.$category->image);
         }
             $category->delete();
            return redirect()->route('showcategory')->with('message',"category deleted succesfully!!");
      }
- }
-
+    }

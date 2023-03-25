@@ -11,10 +11,10 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.*/
- 
+
 /*      light colors         */
 
-@keyframes spin {
+@keyframes spin { th:last-child
     from {
         transform: rotate(0deg);
     }
@@ -1792,7 +1792,7 @@ fieldset[disabled] .form-control {
     padding-bottom: 5px;
     border-top: none !important;
     border-bottom: none;
-    text-align: left !important;
+
 }
 
 .table .td-actions .btn {
@@ -2946,11 +2946,8 @@ Copyright (c) 2015 Daniel Eden
     padding-left: 15px;
 }
 
-.card .table tbody td:last-child,
-.card .table thead th:last-child {
-    padding-right: 15px;
-    display: inline-flex;
-}
+
+
 
 .card .alert {
     border-radius: 4px;

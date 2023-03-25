@@ -24,7 +24,7 @@ Route::get('/add_category','categoryController@create')->middleware(['auth', 've
 Route::post('/upload_category','categoryController@store')->name('uploadcategory');
 Route::get('/show_category','categoryController@show')->name('showcategory');
 Route::get('/edit_category/{id}','categoryController@edit')->name('editcategory');
-Route::post('/updatecategory/{id}','categoryController@update')->name('updatecategory');
+Route::post('/update_category/{id}','categoryController@update')->name('updatecategory');
 Route::get('/delete_category/{id}','categoryController@destroy')->name('deletecategory');
 
 Route::get('/add_product','productController@create')->name('addproduct');
