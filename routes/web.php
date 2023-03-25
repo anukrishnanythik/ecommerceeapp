@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.showcategory');
-});
+
+Route::get('/','homeController@index')->name('home');
+Route::get('/redirect','homeController@redirect')->name('redirect');
 
 
 

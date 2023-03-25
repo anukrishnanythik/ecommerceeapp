@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="nav navbar-nav mr-auto">
-               
+
 
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -17,8 +17,18 @@
                     <a class="nav-link" href="#pablo">
                         <span class="no-icon">Log out</span>
                     </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
                 </li>
             </ul>
+
         </div>
     </div>
 </nav>
