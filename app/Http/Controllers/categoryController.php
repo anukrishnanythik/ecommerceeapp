@@ -22,7 +22,7 @@ class categoryController extends Controller
      */
     public function create()
     {
-        return view('admin.addcategory');
+        return view('admin.category.addcategory');
     }
 
     /**
@@ -69,7 +69,7 @@ class categoryController extends Controller
     public function show()
     {
         $category= Category::all();
-        return view('admin.showcategory',compact('category'));
+        return view('admin.category.showcategory',compact('category'));
     }
 
     /**
@@ -78,7 +78,7 @@ class categoryController extends Controller
     public function edit(string $id)
     {
         $category= Category::findOrFail(decrypt($id));
-        return view('admin.editcategory',compact('category'));
+        return view('admin.category.editcategory',compact('category'));
     }
 
     /**
@@ -106,8 +106,6 @@ class categoryController extends Controller
             $file ='user_pic'. time().'.'.$extension;
             request('image') ->storeAs('image',$file);
             $image =$file;
-
-
         }else{
             $image =$category->image;
         }
