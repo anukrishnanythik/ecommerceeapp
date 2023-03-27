@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\User;
+use App\Models\Address;
 
 class cartController extends Controller
 {
@@ -14,10 +16,11 @@ class cartController extends Controller
     public function index()
     {
         $user_id=Auth::id();
-        $data2= Cart::with('cartproduct')->where('user_id',$user_id)->get();
+        $cart= Cart::with('cartproduct')->where('user_id',$user_id)->get();
+        $user= User::findOrFail($user_id);
         $grandtotal=0;
 
-        return view('user.cart',compact('data2','grandtotal'));
+        return view('user.cart',compact('cart','grandtotal','user'));
 
 
     }
@@ -82,6 +85,33 @@ class cartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cart= Cart::findOrFail(decrypt($id));
+        $cart->delete();
+        return redirect()->back();
     }
+
+   public function userdetails(Request $request){
+    $user_id=Auth::id();
+
+    $name=$request->name;
+       $phone=$request->phone;
+       $address=$request->address;
+
+    $request->validate([
+        'name' => 'required',
+        'phone' => 'required',
+        'address' => 'required',
+    ]);
+
+    Address::create([
+        'user_id' => $user_id,
+        'name' => $name,
+        'address' => $address,
+        'phone' => $phone
+
+    ]);
+
+    return redirect()->back()->with('status',"order placed succesfully!!");
+    }
+
 }

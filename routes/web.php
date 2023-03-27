@@ -35,6 +35,8 @@ Route::get('/product_details/{id}','productController@productdetails')->name('pr
 
 Route::get('/show_cart','cartController@index')->name('showcart');
 Route::post('/add_cart/{id}','cartController@store')->name('addcart');
+Route::get('/delete_order/{id}','cartController@destroy')->name('deletecartorder');
+Route::post('/user_details','cartController@userdetails')->name('userdetails');
 
 
 

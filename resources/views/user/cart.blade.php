@@ -44,9 +44,10 @@
             <div class="row">
                 <div class="col-md-12 shopping-cart-table">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table ">
+                            <thead  class="thead-dark">
                                 <tr>
+                                    <th  class="fs-6">Sl no </th>
                                     <th  class="fs-6">Name </th>
                                     <th  class="fs-3">Image</th>
                                     <th  class="fs-6">Price</th>
@@ -57,35 +58,92 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data2 as $row)
+                                @foreach($cart as $row)
                                 <tr>
+                                    <td>{{$loop->iteration}}</td>
                                     <td>{{$row->cartproduct->name }}</td>
                                     <td>{{$row->cartproduct->name }}</td>
-                                    <td>{{$row->cartproduct->sellingprice }}</td>
+                                    <td>
+                                        @if($row->cartproduct->sellingprice==null)
+                                             {{$row->cartproduct->originalprice }}
+                                        @else
+                                            ${{$row->cartproduct->sellingprice}}
+                                        @endif
+                                    </td>
                                     <td>{{$row->quantity}}</td>
-                                  
-                                    <td>444</td>
+                                    <td>
+                                        @if(($row->cartproduct->sellingprice  * $row->quantity) ==0)
+                                           ${{$row->cartproduct->originalprice  * $row->quantity}}
+                                        @else
+                                           ${{$row->cartproduct->sellingprice  * $row->quantity}}
+                                        @endif
+                                    </td>
+
+                                     @php $grandtotal +=
+                                            $row->cartproduct->originalprice  * $row->quantity
+                                     @endphp
+
+                                    <td><button type="button" class="btn bg-danger"><a href=" {{route('deletecartorder',encrypt($row->id))}}"
+                                    class="text-decoration-none  fs-6 text-light" >Remove</a></button></td>
+
+                                </tr>
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="7">
-                                        <div class="shopping-cart-btn">
-                                            <span class="">
-                                                <a href="#" class="btn btn-upper btn-primary outer-left-xs">Continue
-                                                    Shopping</a>
-                                                <a href="#"
-                                                    class="btn btn-upper btn-primary pull-right outer-right-xs">Update
-                                                    shopping cart</a>
-                                            </span>
-                                        </div><!-- /.shopping-cart-btn -->
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <tbody id="cartPage">
-                            </tbody>
+
                         </table>
+                    </div>
+
+
+                        <div class="col-4  float-right " >
+                            <span class="justify-content-center  mt-3  " >
+                                <h2 class=" bg-warning  fw-bolder pt-2 pb-2 ">&nbsp &nbsp  &nbsp Total price:${{$grandtotal}}</h2>
+
+                            </span>
+
+                        </div>
+                        <br>
+                        <br>
+                        <button type="button" id="order"  class="btn btn-lg bg-primary text-light"> Order Now</button>
+
+                        <div class="row justify-content-center">
+                            <div class="col-6 float-center" id="orderdetails"  style="display:none">
+
+
+                            <form action="  {{route('userdetails')}}" method="post" >
+                                @csrf
+
+                                        <div class="form-group">
+                                            <label  class="fs-6" for="name">Name:</label>
+                                            <input type="text" class=" bg-light text-dark form-control " id="name" name="name"  value= {{$user->name}}>
+                                          </div>
+
+                                          @error('name')
+                                          <p class="text-danger">{{$message}}</p>
+                                                @enderror
+
+                                                <div class="form-group">
+                                                    <label  class="fs-6" for="name">Phone:</label>
+                                                    <input type="text" class=" bg-light text-dark form-control " id="phone" name="phone" value={{old('phone')}}>
+                                                  </div>
+                                                  @error('phone')
+                                                  <p class="text-danger">{{$message}}</p>
+                                                        @enderror
+
+                                                        <div class="form-group">
+                                                            <label  class="fs-6" for="name">Address:</label>
+                                                            <input type="text" class=" bg-light text-dark form-control " id="address" name="address" value={{old('address')}}>
+                                                          </div>
+                                                          @error('address')
+                                                          <p class="text-danger">{{$message}}</p>
+                                                                @enderror
+
+                                                                <div class="text-center">
+                                                                    <button type="submit" class="btn btn-lg bg-success text-light"> Order Confirm</button>
+                                                                    <p id="close" class="btn btn-lg bg-danger mt-3 text-light"> close</p>
+                                                                 </div>
+                            </form>
+
                     </div>
                 </div>
 
@@ -118,6 +176,18 @@
       <script src="home/js/bootstrap.js"></script>
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
+
+
+      <script type="text/javascript">
+       $(document).ready(function() {
+      $("#order").click(function(){
+          $("#orderdetails").show();
+   });
+      $("#close").click(function(){
+          $("#orderdetails").hide();
+   });
+       });
+  </script>
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
       @if(session('status'))
