@@ -63,16 +63,15 @@
                   <h6>Available Quantity: {{$product->quantity}}</h6>
                   <div class="col-6">
 
-                  <form class="forms-sample " action="" method="post">
-                    {{-- {{route('addcart')}} --}}
+                  <form class="forms-sample " action="{{route('addcart',encrypt($product->product_id))}}" method="post">
                     @csrf
             <input type="number" class="" name="quantity" min="1" value="1">
 
             <button type="submit" class="btn btn-info btn-fill ">Add to cart</button>
+        </form>
             </div>
         </div>
 
-            </div>
             </div>
         </div>
     </div>
@@ -96,5 +95,12 @@
       <script src="home/js/bootstrap.js"></script>
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      @if(session('status'))
+<script>
+    swal("{{session('status')}}");
+</script>
+@endif
    </body>
 </html>

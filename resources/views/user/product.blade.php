@@ -18,9 +18,14 @@
                       <a href="" class="option2">
                       Buy Now
                       </a>
-                      <a href="" class="option1 text-link">
-                       Add to cart
-                        </a>
+
+                        <form action="{{route('addcart',encrypt($row->product_id))}}" method="post">
+                            @csrf
+                    <input type="number" class="d-none" name="quantity" min="1" value="1">
+
+                    <button  class="option1" type="submit">Add to cart</button>
+                   
+                </form>
                    </div>
                 </div>
                 <div class="img-box">

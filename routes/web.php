@@ -33,6 +33,10 @@ Route::post('/update_product/{id}','productController@update')->name('updateprod
 Route::get('/delete_product/{id}','productController@destroy')->name('deleteproduct');
 Route::get('/product_details/{id}','productController@productdetails')->name('productdetails');
 
+Route::get('/show_cart','cartController@index')->name('showcart');
+Route::post('/add_cart/{id}','cartController@store')->name('addcart');
+
+
 
 
 
