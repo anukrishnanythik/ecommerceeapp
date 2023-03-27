@@ -37,17 +37,41 @@
             <div class="col-sm-6 col-md-4 col-lg-4">
                <div class="box">
 
-                     <img src="{{asset('storage/image/'.$product->image)}}"  height='500' width='500' class="mt-4" alt="Food image">
+                     <img src="{{asset('storage/image/'.$product->image)}}"  height='400' width='400' class="mt-4" alt="Food image">
                   </div>
-                  <div class="detail-box mt-5">
-                     <h5>
-                      {{$product->title}}
-                     </h5>
+                  <div class="detail-box text-center mt-5">
+                     <h2 class="fw-bold">
+                      {{$product->name}}
+                     </h2>
+                     @if ($product->sellingprice!=null)
                      <h6>
-                        ${{$product->price}}
-                     </h6>
+                       Original price:  ${{$product->originalprice}}
+                       </h6>
+                   <h6 class="text-danger">
+                    Selling price: ${{$product->sellingprice}}
+                      </h6>
+
+                       @else
+                       <h6 class="text-danger">
+                        Original price:  ${{$product->originalprice}}
+                       </h6>
+                   @endif
                   </div>
-               </div>
+                  <br>
+                  <h6>Product Category : {{$product->productcategory->title}}</h6>
+                  <h6>Product Details : {{$product->description}}</h6>
+                  <h6>Available Quantity: {{$product->quantity}}</h6>
+                  <div class="col-6">
+
+                  <form class="forms-sample " action="" method="post">
+                    {{-- {{route('addcart')}} --}}
+                    @csrf
+            <input type="number" class="" name="quantity" min="1" value="1">
+
+            <button type="submit" class="btn btn-info btn-fill ">Add to cart</button>
+            </div>
+        </div>
+
             </div>
             </div>
         </div>

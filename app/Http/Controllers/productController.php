@@ -35,7 +35,6 @@ class productController extends Controller
         'slug' => 'required',
         'description' => 'required',
         'originalprice' => 'required',
-        'sellingprice' => 'required',
         'image' => 'required',
         'quantity' => 'required',
 
@@ -103,7 +102,6 @@ class productController extends Controller
             'slug' => 'required',
             'description' => 'required',
             'originalprice' => 'required',
-            'sellingprice' => 'required',
             'quantity' => 'required',
 
           ]);
@@ -155,6 +153,12 @@ class productController extends Controller
         }
             $product->delete();
            return redirect()->route('showproduct')->with('message',"Product deleted succesfully!!");
+        }
+
+        public function productdetails($id){
+            $id=decrypt($id);
+            $product= Product::findOrFail($id);
+            return view('user.productdetails',compact('product'));
         }
 
 }

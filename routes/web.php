@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','homeController@index')->name('home');
 Route::get('/redirect','homeController@redirect')->name('redirect');
 
-
-
 Route::get('/add_category','categoryController@create')->middleware(['auth', 'verified'])->name('addcategory');
 Route::post('/upload_category','categoryController@store')->name('uploadcategory');
 Route::get('/show_category','categoryController@show')->name('showcategory');

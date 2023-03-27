@@ -11,7 +11,7 @@ use App\Models\Product;
 class homeController extends Controller
 {
     public function index(){
-        $product= Product::all();
+        $product= Product::paginate(6);
         $category= Category::all();
         return view('user.home',compact('category','product'));
 
@@ -29,8 +29,7 @@ class homeController extends Controller
       }
       else{
      $category= Category::all();
-     $product= Product::all();
-
+     $product= Product::paginate(6);
      return view('user.home',compact('category','product'));
       }
     }
@@ -38,5 +37,6 @@ class homeController extends Controller
         return redirect()->back();
       }
 }
+
 }
 

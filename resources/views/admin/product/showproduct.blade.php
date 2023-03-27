@@ -38,7 +38,12 @@
                     <td  class="fs-6">{{$row->quantity}}</td>
                     <td  class="fs-6">{{$row->productcategory->title}}</td>
                     <td  class="fs-6">{{$row->originalprice}}</td>
-                    <td  class="fs-6">{{$row->sellingprice}}</td>
+                    <td  class="fs-6">{{$row->sellingprice}}
+                        @if($row->sellingprice==null)
+                        {{0}}
+                        @endif
+
+                    </td>
                     <td  class="fs-6"><img  height='100' width='100' src="{{asset('storage/image/'.$row->image)}}"  alt="Product image"></td>
                        <td><button type="button" class="btn btn-warning"><a href="{{route('editproduct',encrypt($row->product_id))}}"
                           class="text-decoration-none  fs-6" >Edit</a></button></td>

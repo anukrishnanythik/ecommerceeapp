@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->string('originalprice');
-            $table->string('sellingprice');
+            $table->string('sellingprice')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->string('image');
             $table->string('quantity');
