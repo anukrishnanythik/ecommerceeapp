@@ -38,6 +38,9 @@ Route::post('/add_cart/{id}','cartController@store')->name('addcart');
 Route::get('/delete_order/{id}','cartController@destroy')->name('deletecartorder');
 Route::post('/user_details','cartController@userdetails')->name('userdetails');
 
+Route::get('/show_order','adminController@show')->name('showorder');
+Route::get('/paymentstatus/{id}','adminController@payment')->name('paymentstatus');
+Route::get('/deliverystatus/{id}','adminController@delivery')->name('deliverystatus');
 
 
 

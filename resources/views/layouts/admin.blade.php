@@ -31,7 +31,17 @@
     swal("{{session('status')}}");
 </script>
 @endif
+<script type="text/javascript">
 
+    $(document).ready(function() {
+         $("#order").click(function(){
+             $("#orderdetails").show();
+      });
+         $("#close").click(function(){
+             $("#orderdetails").hide();
+      });
+          });
+     </script>
 </body>
 
 

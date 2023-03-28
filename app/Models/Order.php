@@ -18,4 +18,8 @@ class Order extends Model
         'popular',
         'image'
     ];
+    public function ordercart()
+    {
+        return $this->belongsto(Cart::class,'cart_id','cart_id');
+    }
 }

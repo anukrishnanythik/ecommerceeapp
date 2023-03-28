@@ -10,9 +10,9 @@ Tip 2: you can also add an image using data-image tag
                 Creative Tim
             </a>
         </div>
-        <ul class="nav">
-            <li class="nav-item menu-items">
 
+        <ul class="nav">
+            <li class="nav-item menu-items {{Request::is('redirect')?'active':''}}">
                 <a href="{{route('redirect')}}" class="nav-link">
                     <i class="pe-7s-graph"></i>
                     <p>Dashboard</p>
@@ -32,7 +32,7 @@ Tip 2: you can also add an image using data-image tag
                   </div>
             </li>
 
-            <li class="nav-item menu-items">
+            <li class="nav-item menu-items5def">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
                     <p>Product</p>
                     <i class="menu-arrow"></i>
@@ -45,6 +45,12 @@ Tip 2: you can also add an image using data-image tag
                   </div>
             </li>
 
+              <li class="nav-item menu-items  {{Request::is('show_order')?'active':''}}">
+                <a href="{{route('showorder')}}" class="nav-link">
+                    <i class="pe-7s-graph"></i>
+                    <p>Order</p>
+                </a>
+            </li>
 
 
 

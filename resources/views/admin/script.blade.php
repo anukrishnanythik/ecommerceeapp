@@ -15,13 +15,18 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="admin/assets/js/demo.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script type="text/javascript">
+  <script src="home/js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
 
-    // $(document).ready(function() {
-    //     // Javascript method's body can be found admin assets/js/demos.js
-    //     demo.initDashboardPageCharts();
+ <script type="text/javascript">
 
-    //     demo.showNotification();
+ $(document).ready(function() {
+      $("#order").click(function(){
+          $("#orderdetails").show();
+   });
+      $("#close").click(function(){
+          $("#orderdetails").hide();
+   });
+       });
+  </script>
 
-    // });
-</script>

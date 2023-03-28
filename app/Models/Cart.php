@@ -21,5 +21,8 @@ class Cart extends Model
     {
         return $this->belongsto(Product::class,'product_id','product_id');
     }
-
+    public function cartorder()
+    {
+        return $this->hasMany(Order::class,'cart_id','cart_id');
+    }
 }
