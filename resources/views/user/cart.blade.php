@@ -30,6 +30,7 @@
       <link href="home/css/responsive.css" rel="stylesheet" />
    </head>
    <body>
+    @include('sweetalert::alert')
       <div class="hero_area">
          <!-- header section strats -->
       @include('user.header')
@@ -62,7 +63,8 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$row->cartproduct->name }}</td>
-                                    <td>{{$row->cartproduct->name }}</td>
+                    <td  class="fs-6"><img  height='100' width='100' src="{{asset('storage/image/'.$row->cartproduct->image)}}"  alt="Product image"></td>
+
                                     <td>
                                         @if($row->cartproduct->sellingprice==null)
                                              {{$row->cartproduct->originalprice }}
@@ -83,7 +85,7 @@
                                             $row->cartproduct->originalprice  * $row->quantity
                                      @endphp
 
-                                    <td><button type="button" class="btn bg-danger"><a href=" {{route('deletecartorder',encrypt($row->id))}}"
+                                    <td><button type="button" class="btn bg-danger"><a onclick="confirmation(event)" href="{{route('deletecartorder',encrypt($row->cart_id))}}"
                                     class="text-decoration-none  fs-6 text-light" >Remove</a></button></td>
 
                                 </tr>
@@ -104,15 +106,13 @@
                         </div>
                         <br>
                         <br>
-                        <button type="button" id="order"  class="btn btn-lg bg-primary text-light"> Order Now</button>
+
+                        <button type="button" id="order"  class="btn  bg-primary text-light"> Order Now</button>
 
                         <div class="row justify-content-center">
                             <div class="col-6 float-center" id="orderdetails"  style="display:none">
-
-
                             <form action="  {{route('userdetails')}}" method="post" >
                                 @csrf
-
                                         <div class="form-group">
                                             <label  class="fs-6" for="name">Name:</label>
                                             <input type="text" class=" bg-light text-dark form-control " id="name" name="name"  value= {{$user->name}}>
@@ -139,16 +139,25 @@
                                                                 @enderror
 
                                                                 <div class="text-center">
-                                                                    <button type="submit" class="btn btn-lg bg-success text-light"> Order Confirm</button>
+                                                                    <button type="submit" id="confirm" class="btn btn-lg bg-success text-light"> Order Confirm</button>
                                                                     <p id="close" class="btn btn-lg bg-danger mt-3 text-light"> close</p>
                                                                  </div>
                             </form>
+                    </div>
+                    <br>
+                        <div class="col-md-12 ">
 
+                <div class="text-center justify-content-center" id="proceed"  >
+                    <h2>Proceed to Order</h2>
+                    <div>
+                    <button class="btn mr-4 btn-danger"><a  href="{{route('cashorder')}}"
+                        class="text-decoration-none  text-light">Cash On Delivery</a> </button>
+                        <button class="btn mr-4 btn-danger"><a  href="{{route('payorder',$grandtotal)}}"
+                            class="text-decoration-none  text-light">Pay Using Card</a> </button>
                     </div>
                 </div>
-
-
-
+                </div>
+            </div>
             </div><!-- /.row -->
         </div>
     </div>
@@ -176,6 +185,7 @@
       <script src="home/js/bootstrap.js"></script>
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
       <script type="text/javascript">
@@ -186,15 +196,29 @@
       $("#close").click(function(){
           $("#orderdetails").hide();
    });
+
        });
   </script>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-      @if(session('status'))
 <script>
-    swal("{{session('status')}}");
+    function confirmation(ev) {
+      ev.preventDefault();
+      var urlToRedirect = ev.currentTarget.getAttribute('href');
+      console.log(urlToRedirect);
+      swal({
+          title: "Are you sure to cancel this product",
+          text: "You will not be able to revert this!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+      })
+      .then((willCancel) => {
+          if (willCancel) {
+              window.location.href = urlToRedirect;
+          }
+      });
+  }
 </script>
-@endif
    </body>
 </html>
 

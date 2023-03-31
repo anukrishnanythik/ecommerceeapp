@@ -4,6 +4,14 @@
           <h2>
              Our <span>products</span>
           </h2>
+<div>
+    <form action="{{route('productsearch')}}" method="get">
+@csrf
+<input style="width:500px;" type="name" class="form-control" name="search">
+<input class="pt-2 pb-2 pl-4 pr-4"  type="submit" value="search">
+    </form>
+</div>
+
        </div>
        <div class="row">
 
@@ -24,7 +32,7 @@
                     <input type="number" class="d-none" name="quantity" min="1" value="1">
 
                     <button  class="option1" type="submit">Add to cart</button>
-                   
+
                 </form>
                    </div>
                 </div>

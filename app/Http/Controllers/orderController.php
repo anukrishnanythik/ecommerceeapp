@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Address;
+use Session;
+use Stripe;
 
 class orderController extends Controller
 {
@@ -41,24 +48,69 @@ class orderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function cashorder()
     {
-        //
+        $user_id=Auth::id();
+        $cart= Cart::where('user_id',$user_id)->get();
+        foreach($cart as $data)
+        {
+            Order::create([
+                'cart_id' =>  $data->cart_id,
+                'name'  =>"Cas on delivery",
+                'phone'  =>"Cas on delivery",
+                'address'  =>"Cas on delivery",
+                'paymentstatus' =>"Cash on delivery",
+                'deliverystatus' => "Processing",
+
+            ]);
+            $id =  $data->cart_id;
+            $carts= Cart::findOrFail($id);
+            $carts->delete();
+        }
+           alert()->success('order placed succesfully!!','success');
+           return redirect()->back();
+        }
+
+        public function payorder($grandtotal)
+        {
+           return view('user.stripe',compact('grandtotal'));
+        }
+
+        public function stripepost(Request $request,$grandtotal)
+        {
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\PaymentIntent::create ([
+                    "amount" => $grandtotal*100,
+                    "currency" =>'usd',
+                    "description" => "payment done",
+            ]);
+            $user_id=Auth::id();
+            $cart= Cart::where('user_id',$user_id)->get();
+            foreach($cart as $data)
+            {
+                Order::create([
+                    'cart_id' =>  $data->cart_id,
+                    'name'  =>"Cas on delivery",
+                    'phone'  =>"Cas on delivery",
+                    'address'  =>"Cas on delivery",
+                    'paymentstatus' =>"Cash on delivery",
+                    'deliverystatus' => "Processing",
+
+                ]);
+                $id =  $data->cart_id;
+                $carts= Cart::findOrFail($id);
+                $carts->delete();
+            }
+            Session::flash('success', 'Payment Successfull!');
+            return back();
+        }
+
+
     }
-}
+
+
+

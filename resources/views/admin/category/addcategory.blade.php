@@ -64,7 +64,7 @@
          @enderror
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12  d-flex justify-content-center">
             <button type="submit" class="btn btn-info btn-fill pull-right">Add Category</button>
         </div>
      </form>

@@ -99,8 +99,8 @@
          @enderror
         </div>
 
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-info btn-fill pull-right">Add Product</button>
+        <div class="col-md-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-info btn-fill ">Add Product</button>
         </div>
      </form>
 

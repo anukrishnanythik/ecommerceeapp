@@ -23,6 +23,8 @@
       <link href="home/css/responsive.css" rel="stylesheet" />
    </head>
    <body>
+    @include('sweetalert::alert')
+
       <div class="hero_area">
          <!-- header section strats -->
       @include('user.header')
@@ -95,12 +97,7 @@
       <script src="home/js/bootstrap.js"></script>
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-      @if(session('status'))
-<script>
-    swal("{{session('status')}}");
-</script>
-@endif
+
    </body>
 </html>

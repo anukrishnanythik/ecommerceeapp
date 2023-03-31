@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Address;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class cartController extends Controller
 {
@@ -49,7 +49,8 @@ class cartController extends Controller
             'product_id'=> $productid,
             'quantity'=> $quantity,
         ]);
-            return redirect()->route('showcart')->with('status',"Product added to cart!!");
+        Alert::toast('Product added to cart!!', 'success');
+            return redirect()->route('showcart');
         }
          else{
          return redirect ('login');

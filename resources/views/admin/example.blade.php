@@ -1,116 +1,88 @@
 @extends('layouts.admin')
-@section('contents')
 
+@section('contents')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
             <div class="page-header">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Category</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Show category</li>
-                  </ol>
-                </nav>
-              </div>
-
-      <div class="card-body">
-
-        <div class="card-body table-full-width table-responsive">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th  class="fs-4 text-center">slno </th>
-                        <th  class="fs-4 text-center">Name</th>
-                        <th  class="fs-4 text-center">Email</th>
-                        <th  class="fs-6 text-center">Phone</th>
-                        <th  class="fs-6 text-center">Address</th>
-                        <th  class="fs-6 text-center">Price</th>
-                        <th  class="fs-6 text-center">Orderdetails</th>
-                        <th  class="fs-6 text-center">Paymentstatus</th>
-                        <th  class="fs-6 text-center">Deliverystatus</th>
-                        <th colspan="2" class="fs-6 text-center">Action</th>
-                     </tr>
-                </thead>
-                <tbody>
-
-                    @foreach($order as $row )
-                    <tr class="fs-6 text-center ">
-                        <td  class="fs-6 ">{{$loop->iteration}}</td>
-                        <td>{{$row->name}}</td>
-                        <td>{{$row->ordercart->cartuser->email}}</td>
-                        <td>{{$row->phone}}</td>
-                        <td>{{$row->address}}</td>
-
-                        <td>
-                                 <p id="order" > Details</p>
-
-                            </td>
-
-                        <div class="row justify-content-center">
-                            <div class="col-6 float-center" id="orderdetails"  style="display:none">
-<p>fgfbfb</p>
-</div>
-</div>
-
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        {{-- <td  class="fs-6">{{$row->title}}</td>
-                        <td  class="fs-6">{{$row->description}}</td>
-                        <td  class="fs-6"><img  height='100' width='100' src="{{asset('storage/image/'.$row->image)}}"  alt="Category image"></td> --}}
-
-
-                        <td><button type="button" class="btn btn-warning"><a href="{{route('paymentstatus',encrypt($row->order_id))}}"
-                            class="text-decoration-none  fs-6" >Paymentstatus</a></button>  </td>
-                            <td>   <button type="button" class="btn btn-danger"><a href="{{route('deliverystatus',encrypt($row->order_id))}}"
-                                class="text-decoration-none  fs-6" >Deliverystatus</a></button>
-                          </td>
-                      </tr>
-                 @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-</div>
-
-
-
-
-<button type="button" id="order"  class="btn btn-lg bg-primary text-light"> Order Now</button>
-
-<div class="row justify-content-center">
-    <div class="col-6 float-center" id="orderdetails"  style="display:none">
-
-
-                <div class="form-group">
-                    <label  class="fs-6" for="name">Name:</label>
-                    <input type="text" class=" bg-light text-dark form-control " id="name" name="name" >
-                  </div>
-
-                </div>
+              <h2 class="text-center text-secondary">Welcome Admin</h2>
             </div>
-
-
-
-            <div class="row">
-
-                <button type="button" id="order"  class="btn btn-lg bg-primary text-light"> Order Now</button>
-
-                <div class="row justify-content-center">
-                    <div class="col-6 float-center" id="orderdetails"  style="display:none">
-
-                                                    <label  class="fs-6" for="name">Address:</label>
-                                                    <p>fdvdfg</p>
-                                                    <h1>fsfgdfgg</h1>
-
-
-                                                        <div class="text-center">
-                                                            <p id="close" class="btn btn-lg bg-danger mt-3 text-light"> close</p>
-                                                         </div>
-
-        </div>
-
     </div>
+ </div>
 
-@endsection
+ <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">weekend</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Today's Money</p>
+              <h4 class="mb-0">$53k</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+              <h4 class="mb-0">2,300</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">New Clients</p>
+              <h4 class="mb-0">3,462</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6">
+        <div class="card">
+          <div class="card-header p-3 pt-2">
+            <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+              <i class="material-icons opacity-10">weekend</i>
+            </div>
+            <div class="text-end pt-1">
+              <p class="text-sm mb-0 text-capitalize">Sales</p>
+              <h4 class="mb-0">$103,430</h4>
+            </div>
+          </div>
+          <hr class="dark horizontal my-0">
+          <div class="card-footer p-3">
+            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</main>
+
+
+ @endsection

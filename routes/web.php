@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/','homeController@index')->name('home');
-Route::get('/redirect','homeController@redirect')->name('redirect');
+Route::get('/redirect','homeController@redirect')->name('redirect')->middleware('auth','verified');
+Route::get('product_search','homeController@productsearch')->name('productsearch');
 
 Route::get('/add_category','categoryController@create')->middleware(['auth', 'verified'])->name('addcategory');
 Route::post('/upload_category','categoryController@store')->name('uploadcategory');
@@ -39,12 +40,15 @@ Route::get('/delete_order/{id}','cartController@destroy')->name('deletecartorder
 Route::post('/user_details','cartController@userdetails')->name('userdetails');
 
 Route::get('/show_order','adminController@show')->name('showorder');
-Route::get('/paymentstatus/{id}','adminController@payment')->name('paymentstatus');
 Route::get('/deliverystatus/{id}','adminController@delivery')->name('deliverystatus');
+Route::get('/print_pdf/{id}','adminController@printpdf')->name('printpdf');
+Route::get('/emailview/{id}','adminController@emailview')->name('emailview');
+Route::get('/order_search','adminController@ordersearch')->name('ordersearch');
+Route::post('/sendemail/{id}', 'adminController@sendemail')->name('sendemail');
 
-
-
-
+Route::get('/cash on delivery','orderController@cashorder')->name('cashorder');
+Route::get('/card_payment/{grandtotal}','orderController@payorder')->name('payorder');
+Route::post('/stripe/{grandtotal}','orderController@stripepost')->name('stripe.post');
 
 
 
