@@ -59,8 +59,10 @@ class orderController extends Controller
         foreach($cart as $data)
         {
             Order::create([
-                'cart_id' =>  $data->cart_id,
-                'name'  =>"Cas on delivery",
+                'user_id' =>  $data->user_id,
+                'product_id' =>  $data->product_id,
+                'quantity' =>  $data->quantity,
+                'username'  =>"Cas on delivery",
                 'phone'  =>"Cas on delivery",
                 'address'  =>"Cas on delivery",
                 'paymentstatus' =>"Cash on delivery",
@@ -93,8 +95,10 @@ class orderController extends Controller
             foreach($cart as $data)
             {
                 Order::create([
-                    'cart_id' =>  $data->cart_id,
-                    'name'  =>"Cas on delivery",
+                    'user_id' =>  $data->user_id,
+                    'product_id' =>  $data->product_id,
+                    'quantity' =>  $data->quantity,
+                    'username'  =>"Cas on delivery",
                     'phone'  =>"Cas on delivery",
                     'address'  =>"Cas on delivery",
                     'paymentstatus' =>"Cash on delivery",

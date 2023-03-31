@@ -15,9 +15,8 @@ class adminController extends Controller
 {
     public function show()
     {
-        $order= Order::with('ordercart')->get();
-        $cart= Cart::with('cartproduct')->with('cartuser')->get();
-        return view('admin.showorder',compact('order','cart'));
+        $order= Order::with('orderuser')->with('orderproduct')->get();
+        return view('admin.showorder',compact('order'));
     }
 
 public function delivery(string $id)
@@ -59,7 +58,7 @@ public function emailview(string $id)
 public function ordersearch(Request $request)
 {
   $searchtext=$request->search;
-  $order= Order::where('name','LIKE','%'.$searchtext.'%')->get();
+  $order= Order::where('username','LIKE','%'.$searchtext.'%')->orWhere('phone','LIKE','%'.$searchtext.'%')->get();
 
     return view('admin.showorder',compact('order'));
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\User;
 use App\Models\Product;
 
 
@@ -30,10 +32,13 @@ class homeController extends Controller
       if(Auth::user()->role=='admin')
       {
         $totalproduct= Product::all()->count();
+        $totalorder= Order::all()->count();
+        $order= Order::all();
+        $totaluser= User::all()->count();
 
 
 
-        return view('admin.home');
+        return view('admin.home',compact('totalproduct','totalorder','totaluser'));
       }
       else{
      $category= Category::all();

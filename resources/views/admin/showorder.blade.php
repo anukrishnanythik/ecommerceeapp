@@ -10,21 +10,21 @@
             <div class="page-header">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Category</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Show category</li>
+                    <li class="breadcrumb-item"><a href="#">Order</a></li>
                   </ol>
                 </nav>
               </div>
 
-              <div class="col-md-12 d-flex justify-content-center">
-                <form action="{{route('ordersearch')}}" method="get">
+            <div class="col-md-12 d-flex justify-content-center">
+            <form action="{{route('ordersearch')}}" method="get">
             @csrf
-            <input style="width:500px;" type="text" class="form-control" name="search">
-            <br>
-            <div  class="d-flex justify-content-center">
-            <button  type="submit" value="search">Search </button>
-                </form>
-            </div></div>
+            <div class="input-group">
+                 <input style="width:500px;" type="text" class="form-control" name="search">
+                 <button  type="submit" class="btn btn-primary" value="search">Search </button>
+            </div>
+        </form>
+
+        </div>
 
       <div class="card-body">
 
@@ -50,16 +50,16 @@
         @foreach($order as $row )
         <tr class="fs-6 text-center ">
             <td  class="fs-6 ">{{$loop->iteration}}</td>
-            <td>{{$row->name}}</td>
-            <td>{{$row->ordercart->cartuser->email}}</td>
+            <td>{{$row->username}}</td>
+            <td>{{$row->orderuser->email}}</td>
             <td>{{$row->phone}}</td>
             <td>{{$row->address}}</td>
-            <td>{{$row->ordercart->cartproduct->name}}</td>
-            <td>{{$row->ordercart->quantity}}</td>
-            <td> @if(($row->ordercart->cartproduct->sellingprice  * $row->quantity) ==0)
-                ${{$row->ordercart->cartproduct->originalprice  * $row->ordercart->quantity}}
+            <td>{{$row->orderproduct->name}}</td>
+            <td>{{$row->quantity}}</td>
+            <td> @if(($row->orderproduct->sellingprice  * $row->quantity) ==0)
+                ${{$row->orderproduct->originalprice  * $row->quantity}}
              @else
-                ${{$row->ordercart->cartproduct->sellingprice  * $row->ordercart->quantity}}
+                ${{$row->orderproduct->sellingprice  * $row->quantity}}
              @endif</td>
             <td>{{$row->paymentstatus}}</td>
             <td>{{$row->deliverystatus}}</td>

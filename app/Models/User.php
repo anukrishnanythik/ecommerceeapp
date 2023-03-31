@@ -42,10 +42,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
     public function usercart()
     {
         return $this->hasMany(Cart::class,'user_id','id');
+    }
+    public function userorder()
+    {
+        return $this->hasMany(Order::class,'user_id','id');
     }
     public function useraddress()
     {

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('order_id');
-            $table->unsignedBigInteger('cart_id');
-            $table->string('name');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->string('quantity');
+            $table->string('username');
             $table->string('phone');
             $table->string('address');
             $table->string('paymentstatus');

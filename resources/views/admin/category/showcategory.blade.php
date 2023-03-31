@@ -3,15 +3,14 @@
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
-            <div class="page-header">
+              <div class="page-header">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Category</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Show category</li>
+                    <li class="breadcrumb-item active">Category</li>
+                    <li class="breadcrumb-item active text-info" aria-current="page">Show category</li>
                   </ol>
                 </nav>
               </div>
-
       <div class="card-body">
 
         <div class="card-body table-full-width table-responsive">

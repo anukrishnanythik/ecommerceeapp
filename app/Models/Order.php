@@ -13,9 +13,14 @@ class Order extends Model
 
     protected $primaryKey = 'order_id';
     protected $guarded = [];
+
    
-    public function ordercart()
+    public function orderuser()
     {
-        return $this->belongsto(Cart::class,'cart_id','cart_id');
+        return $this->belongsto(User::class,'user_id','id');
+    }
+    public function orderproduct()
+    {
+        return $this->belongsto(Product::class,'product_id','product_id');
     }
 }

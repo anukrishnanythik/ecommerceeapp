@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Product</li>
-                    <li class="breadcrumb-item active text-info" aria-current="page">Add product</li>
+                    <li class="breadcrumb-item active text-info" aria-current="page">Show product</li>
                   </ol>
                 </nav>
               </div>
