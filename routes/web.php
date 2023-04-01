@@ -49,6 +49,8 @@ Route::post('/sendemail/{id}', 'adminController@sendemail')->name('sendemail');
 Route::get('/cash on delivery','orderController@cashorder')->name('cashorder');
 Route::get('/card_payment/{grandtotal}','orderController@payorder')->name('payorder');
 Route::post('/stripe/{grandtotal}','orderController@stripepost')->name('stripe.post');
+Route::get('/show_user_order','orderController@index')->name('showorderuser');
+Route::get('/cancel_order/{id}','orderController@cancelorder')->name('cancelorder');
 
 
 

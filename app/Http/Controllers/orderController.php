@@ -18,40 +18,27 @@ class orderController extends Controller
      */
     public function index()
     {
-        //
+
+        if(Auth::id())
+        {
+            $user_id=Auth::id();
+            $order= Order::with('orderuser')->with('orderproduct')->where('user_id',$user_id)->get();
+        return view('user.showorder',compact('order'));
+        }
+        else{
+            return redirect('login');
+          }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function cancelorder($id)
     {
-        //
+        $order= Order::findOrFail(decrypt($id));
+        $order['deliverystatus'] ='Order cancelled';
+        $order-> update();
+        return redirect()->back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function cashorder()
     {
         $user_id=Auth::id();

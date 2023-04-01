@@ -47,7 +47,7 @@
     </thead>
     <tbody>
 
-        @foreach($order as $row )
+        @forelse($order as $row )
         <tr class="fs-6 text-center ">
             <td  class="fs-6 ">{{$loop->iteration}}</td>
             <td>{{$row->username}}</td>
@@ -65,9 +65,9 @@
             <td>{{$row->deliverystatus}}</td>
 
                 <td>
-                    @if ($row->deliverystatus == 'deliver')
+                    @if ($row->deliverystatus == 'Processing')
                     <button type="button" class="btn btn-danger"><a href="{{route('deliverystatus',encrypt($row->order_id))}}"
-                    class="text-decoration-none  fs-6" >Delivery</a></button>
+                    class="text-decoration-none  fs-6" >Delivered</a></button>
                     @else
 
                     <p class="mt-2">Delivered</p>
@@ -78,7 +78,15 @@
                 <td><button type="button" class="btn btn-warning"><a href="{{route('emailview',encrypt($row->order_id))}}"
                     class="text-decoration-none  fs-6" >Sent <br>email</a></button>  </td>
           </tr>
-     @endforeach
+          @empty
+          <div>
+            <tr>
+                <td class="fs-5 text-center" colspan="12" >
+               <h4> No data found</h4>
+            </td>
+            </tr>
+          </div>
+     @endforelse
     </tbody>
 </table>
 </div>

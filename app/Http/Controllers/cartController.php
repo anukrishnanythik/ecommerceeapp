@@ -15,13 +15,17 @@ class cartController extends Controller
      */
     public function index()
     {
-        $user_id=Auth::id();
-        $cart= Cart::with('cartproduct')->where('user_id',$user_id)->get();
-        $user= User::findOrFail($user_id);
-        $grandtotal=0;
-
-        return view('user.cart',compact('cart','grandtotal','user'));
-
+        if(Auth::id())
+        {
+            $user_id=Auth::id();
+            $cart= Cart::with('cartproduct')->where('user_id',$user_id)->get();
+            $user= User::findOrFail($user_id);
+            $grandtotal=0;
+            return view('user.cart',compact('cart','grandtotal','user'));
+         }
+         else{
+            return redirect('login');
+          }
 
     }
 

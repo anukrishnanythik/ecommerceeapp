@@ -89,7 +89,6 @@
                                     class="text-decoration-none  fs-6 text-light" >Remove</a></button></td>
 
                                 </tr>
-                                </tr>
                                 @endforeach
                             </tbody>
 

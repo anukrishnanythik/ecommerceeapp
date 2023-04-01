@@ -20,9 +20,7 @@
                 <li class="nav-item">
                    <a class="nav-link" href="product.html">Products</a>
                 </li>
-                <li class="nav-item">
-                   <a class="nav-link" href="blog_list.html">Blog</a>
-                </li>
+              
                 <li class="nav-item">
                    <a class="nav-link" href="contact.html">Contact</a>
                 </li>
@@ -82,8 +80,11 @@
                        </svg>
                     </a>
                  </li>
-
+                 <li class="nav-item">
+                  <a class="nav-link"href="{{route('showorderuser')}}">Order</a>
+               </li>
               </ul>
+
             <ul class="navbar-nav">
 
                 @if(Route::has('login'))

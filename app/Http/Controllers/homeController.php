@@ -33,12 +33,14 @@ class homeController extends Controller
       {
         $totalproduct= Product::all()->count();
         $totalorder= Order::all()->count();
-        $order= Order::all();
         $totaluser= User::all()->count();
+        $order= Order::all();
+        $totaldelivered=Order::where('deliverystatus','delivered')->get()->count();
+        $totalprocessing=Order::where('deliverystatus','Processing')->get()->count();
 
 
 
-        return view('admin.home',compact('totalproduct','totalorder','totaluser'));
+        return view('admin.home',compact('totalproduct','totalorder','totaluser','totaldelivered','totalprocessing'));
       }
       else{
      $category= Category::all();
@@ -54,7 +56,7 @@ class homeController extends Controller
 public function productsearch(Request $request)
 {
     $searchtext=$request->search;
-    $product= Product::where('name','Like','%$searchtext%')->where('phone','Like','%'.$searchtext.'%')->where('address','Like','%'.$searchtext.'%')->get();
+    $product= Product::where('name','LIKE','%'.$searchtext.'%')->paginate(2);
 
     return view('user.home',compact('product'));
 }
